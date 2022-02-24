@@ -1,0 +1,57 @@
+<div class="register-container">
+    <mat-card>
+        <mat-card-title class="card-title">Rejoinez-nous!</mat-card-title>
+        <mat-card-content>
+            <div class="register-content">
+                <form [formGroup]="registerUserForm" (ngSubmit)="register()">
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input 
+                        matInput 
+                        type="email" 
+                        formControlName="email"
+                        [ngClass]="{'text-danger': 
+                        registerUserForm.get('email').touched &&
+                        registerUserForm.get('email').dirty &&
+                        registerUserForm.get('email').valid
+                        }">
+                        <mat-error *ngIf="registerUserForm.get('email').errors?.required">Entrer un email</mat-error>
+                        <mat-error *ngIf="registerUserForm.get('email').errors?.email">Email invalid</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Username</mat-label>
+                        <input 
+                        matInput 
+                        type="text" 
+                        formControlName="username"
+                        [ngClass]="{'text-danger': 
+                        registerUserForm.get('username').touched &&
+                        registerUserForm.get('username').dirty &&
+                        registerUserForm.get('username').valid
+                        }">
+                        <mat-error *ngIf="registerUserForm.get('username').errors?.required">Entrer votre nom</mat-error>
+                        <mat-error *ngIf="registerUserForm.get('username').errors?.minlength">Votre username doit comporter au moin 4 caractères</mat-error>
+                        <mat-error *ngIf="registerUserForm.get('username').errors?.maxlength">Votre username doit comporter maximum 13 caractères</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Password</mat-label>
+                        <input 
+                        matInput 
+                        type="password" 
+                        formControlName="password"
+                        [ngClass]="{'text-danger': 
+                        registerUserForm.get('password').touched &&
+                        registerUserForm.get('password').valid
+                        }">
+                        <mat-error *ngIf="registerUserForm.get('password').errors?.required">Entrer votre mot de pass</mat-error>
+                    </mat-form-field>
+                    <mat-card-actions>
+                      <div class="register-button">
+                          <button type="submit" matInput mat-raised-button color="primary" [disabled]="!registerUserForm.valid">Valider</button>
+                      </div>
+                    </mat-card-actions>
+                </form>
+            </div>
+      </mat-card-content>
+    </mat-card>
+</div>
